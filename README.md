@@ -68,7 +68,7 @@ The slide switch on the side picks the base layer. Both positions use the HHKB b
 
 ```sh
 echo 'KERNEL=="hidraw*", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="01c0", MODE="0660", TAG+="uaccess"' \
-  | sudo tee /etc/udev/rules.d/99-keychron-q60.rules
+  | sudo tee /etc/udev/rules.d/70-keychron-q60.rules
 sudo udevadm control --reload && sudo udevadm trigger
 ```
 

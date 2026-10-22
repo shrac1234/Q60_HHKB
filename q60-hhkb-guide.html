@@ -314,7 +314,7 @@ footer { font-size: 0.88rem; color: var(--muted); border-top: 1px solid var(--li
         <h3>Allow access (do this first)</h3>
         <p>Linux only lets root write to the keyboard's settings interface. This udev rule gives your user access every time the board is plugged in, and lets VIA in Chrome connect too:</p>
         <pre>echo 'KERNEL=="hidraw*", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="01c0", MODE="0660", TAG+="uaccess"' \
-  | sudo tee /etc/udev/rules.d/99-keychron-q60.rules
+  | sudo tee /etc/udev/rules.d/70-keychron-q60.rules
 sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</pre>
         <p>Quick one-off alternative, lost on every replug or reboot: <code>sudo chmod a+rw /dev/hidraw9</code> (the number can vary).</p>
       </div>
