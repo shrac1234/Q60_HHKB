@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Q60 HHKB Keymap</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root {
+  --ground: #eef0f2;
+  --paper: #f8f9fa;
+  --ink: #1d2126;
+  --muted: #5a626b;
+  --line: #d3d8dd;
+  --cap: #fdfdfc;
+  --cap-edge: #a9b0b8;
+  --accent: #1b5ca3;
+
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "Source Sans 3", "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", "DejaVu Sans Mono", monospace;
+}
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ground); }
+body {
+  color: var(--ink);
+  font: 400 10pt/1.45 var(--body);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.page {
+  width: 210mm;
+  height: 297mm;
+  padding: 12mm 14mm;
+  background: var(--ground);
+  display: flex;
+  flex-direction: column;
+  gap: 6mm;
+  page-break-after: always;
+  overflow: hidden;
+}
+.page:last-child { page-break-after: auto; }
+
+.credit { font: 400 7pt/1 var(--body); color: var(--muted); letter-spacing: 0.02em; }
+header { display: flex; flex-direction: column; gap: 2.5mm; }
+.eyebrow { font: 600 7.5pt/1 var(--mono); color: var(--muted); letter-spacing: 0.04em; }
+.wordmark svg { display: block; width: 92mm; height: auto; }
+.lede { color: var(--muted); max-width: 150mm; }
+.repo { font: 600 8.5pt/1.3 var(--mono); }
+a { color: var(--accent); text-decoration: none; }
+
+h2 { font: 700 14pt/1.2 var(--display); font-stretch: 85%; margin: 0; }
+h3 { font: 700 7pt/1.2 var(--display); text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); margin: 0; }
+p { margin: 0; }
+section { display: flex; flex-direction: column; gap: 3mm; }
+.board svg { display: block; width: 100%; height: auto; }
+.caption { font-size: 8pt; color: var(--muted); }
+
+kbd {
+  font: 600 7.5pt/1 var(--mono);
+  background: var(--cap);
+  border: 0.6pt solid var(--cap-edge);
+  border-bottom-width: 1.2pt;
+  border-radius: 1mm;
+  padding: 0.5mm 1.1mm;
+  white-space: nowrap;
+}
+code, pre { font-family: var(--mono); }
+code { font-size: 8.5pt; }
+
+.groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm 7mm; }
+.groups.two { grid-template-columns: repeat(2, 1fr); }
+.group { display: flex; flex-direction: column; gap: 1.8mm; }
+dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 1.3mm 3mm; align-items: baseline; }
+dd { margin: 0; }
+
+pre {
+  margin: 0;
+  background: var(--paper);
+  border: 0.6pt solid var(--line);
+  border-radius: 1.5mm;
+  padding: 2.5mm 3mm;
+  font-size: 7.5pt;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.steps { display: flex; flex-direction: column; gap: 3.5mm; }
+.step { display: flex; flex-direction: column; gap: 1.5mm; }
+footer { margin-top: auto; font-size: 7.5pt; color: var(--muted); border-top: 0.6pt solid var(--line); padding-top: 2mm; display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="credit">Shreevathsa Acharya</div>
+  <header>
+    <span class="eyebrow">Keychron Q60 · 3434:01C0 · QMK / VIA</span>
+    <div class="wordmark" role="img" aria-label="Q60 HHKB">{{WORDMARK}}</div>
+    <p class="lede">The Q60 set up like an HHKB Professional: what Fn does, the extra lighting layer, and how to back up or change the layout.</p>
+    <p class="repo">Script, README and interactive guide: <a href="https://github.com/shrac1234/Q60_HHKB">github.com/shrac1234/Q60_HHKB</a></p>
+  </header>
+
+  <section>
+    <h2>Hold Fn</h2>
+    <div class="board">{{FN_BOARD}}</div>
+    <p class="caption">Top legend: what the key types normally. Blue legend: what it types while you hold the outlined key.</p>
+  </section>
+
+  <section>
+    <h2>Fn functions</h2>
+    <div class="groups">
+      <div class="group">
+        <h3>Arrows and paging</h3>
+        <dl>
+          <dt><kbd>Fn</kbd> <kbd>[</kbd></dt><dd>Up</dd>
+          <dt><kbd>Fn</kbd> <kbd>/</kbd></dt><dd>Down</dd>
+          <dt><kbd>Fn</kbd> <kbd>;</kbd></dt><dd>Left</dd>
+          <dt><kbd>Fn</kbd> <kbd>'</kbd></dt><dd>Right</dd>
+          <dt><kbd>Fn</kbd> <kbd>K</kbd></dt><dd>Home</dd>
+          <dt><kbd>Fn</kbd> <kbd>,</kbd></dt><dd>End</dd>
+          <dt><kbd>Fn</kbd> <kbd>L</kbd></dt><dd>Page Up</dd>
+          <dt><kbd>Fn</kbd> <kbd>.</kbd></dt><dd>Page Down</dd>
+        </dl>
+      </div>
+      <div class="group">
+        <h3>Editing</h3>
+        <dl>
+          <dt><kbd>BS</kbd></dt><dd>Backspace</dd>
+          <dt><kbd>Fn</kbd> <kbd>BS</kbd></dt><dd>Delete (forward)</dd>
+          <dt><kbd>Fn</kbd> <kbd>`</kbd></dt><dd>Delete (forward)</dd>
+          <dt><kbd>Fn</kbd> <kbd>\</kbd></dt><dd>Insert</dd>
+          <dt><kbd>Fn</kbd> <kbd>Tab</kbd></dt><dd>Caps Lock</dd>
+        </dl>
+        <h3 style="margin-top:2mm">Function row</h3>
+        <dl>
+          <dt><kbd>Fn</kbd> <kbd>1</kbd>…<kbd>0</kbd></dt><dd>F1 to F10</dd>
+          <dt><kbd>Fn</kbd> <kbd>-</kbd> <kbd>=</kbd></dt><dd>F11, F12</dd>
+        </dl>
+      </div>
+      <div class="group">
+        <h3>Media</h3>
+        <dl>
+          <dt><kbd>Fn</kbd> <kbd>A</kbd></dt><dd>Volume down</dd>
+          <dt><kbd>Fn</kbd> <kbd>S</kbd></dt><dd>Volume up</dd>
+          <dt><kbd>Fn</kbd> <kbd>D</kbd></dt><dd>Mute</dd>
+          <dt><kbd>Fn</kbd> <kbd>F</kbd></dt><dd>Eject (macOS)</dd>
+        </dl>
+        <h3 style="margin-top:2mm">Numpad and system</h3>
+        <dl>
+          <dt><kbd>Fn</kbd> <kbd>H</kbd> <kbd>J</kbd></dt><dd>Numpad * and /</dd>
+          <dt><kbd>Fn</kbd> <kbd>N</kbd> <kbd>M</kbd></dt><dd>Numpad + and −</dd>
+          <dt><kbd>Fn</kbd> <kbd>Enter</kbd></dt><dd>Numpad Enter</dd>
+          <dt><kbd>Fn</kbd> <kbd>I</kbd> <kbd>O</kbd> <kbd>P</kbd></dt><dd>PrtSc, ScrLk, Pause</dd>
+          <dt><kbd>Fn</kbd> <kbd>Esc</kbd></dt><dd>Power</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <footer><span>Q60 HHKB Keymap</span><a href="https://github.com/shrac1234/Q60_HHKB">github.com/shrac1234/Q60_HHKB</a></footer>
+</div>
+
+<div class="page">
+  <div class="credit">Shreevathsa Acharya</div>
+  <section>
+    <h2>Hold Fn + Right Shift: lighting and NKRO</h2>
+    <div class="board">{{LIGHT_BOARD}}</div>
+    <div class="groups">
+      <div class="group">
+        <h3>Turn up</h3>
+        <dl>
+          <dt><kbd>Tab</kbd></dt><dd>Backlight on / off</dd>
+          <dt><kbd>Q</kbd></dt><dd>Next effect</dd>
+          <dt><kbd>W</kbd></dt><dd>Brighter</dd>
+          <dt><kbd>E</kbd></dt><dd>Hue forward</dd>
+          <dt><kbd>R</kbd></dt><dd>More saturation</dd>
+          <dt><kbd>T</kbd></dt><dd>Faster effect</dd>
+        </dl>
+      </div>
+      <div class="group">
+        <h3>Turn down</h3>
+        <dl>
+          <dt><kbd>A</kbd></dt><dd>Previous effect</dd>
+          <dt><kbd>S</kbd></dt><dd>Dimmer</dd>
+          <dt><kbd>D</kbd></dt><dd>Hue back</dd>
+          <dt><kbd>F</kbd></dt><dd>Less saturation</dd>
+          <dt><kbd>G</kbd></dt><dd>Slower effect</dd>
+        </dl>
+      </div>
+      <div class="group">
+        <h3>Other</h3>
+        <dl>
+          <dt><kbd>N</kbd></dt><dd>NKRO on / off</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Mac / Windows switch</h2>
+    <p>The slide switch on the side picks the base layer. Both use the HHKB bottom row, Alt ◇ Space ◇ Alt; only what ◇ and Alt send differs.</p>
+    <div class="groups two">
+      <div class="group"><h3>Mac (layer 0)</h3><p><kbd>Option</kbd> <kbd>Cmd</kbd> <kbd>Space</kbd> <kbd>Cmd</kbd> <kbd>Option</kbd></p></div>
+      <div class="group"><h3>Windows (layer 1)</h3><p><kbd>Alt</kbd> <kbd>Win</kbd> <kbd>Space</kbd> <kbd>Win</kbd> <kbd>Alt</kbd></p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Backing up and changing the layout</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>Allow access (do this first)</h3>
+        <p>Linux only lets root write to the keyboard's settings interface. This udev rule gives your user access every time the board is plugged in, and lets VIA in Chrome connect:</p>
+        <pre>echo 'KERNEL=="hidraw*", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="01c0", MODE="0660", TAG+="uaccess"' | sudo tee /etc/udev/rules.d/99-keychron-q60.rules
+sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</pre>
+        <p>Quick one-off alternative, lost on every replug or reboot: <code>sudo chmod a+rw /dev/hidraw9</code></p>
+      </div>
+      <div class="step">
+        <h3>Script commands</h3>
+        <pre>python3 hhkb_q60.py backup             # save every layer to q60_backup_&lt;timestamp&gt;.json
+python3 hhkb_q60.py apply              # back up (never overwrites), write HHKB layout, verify
+python3 hhkb_q60.py restore FILE.json  # write a backup back</pre>
+      </div>
+      <div class="step">
+        <h3>Edit single keys in VIA</h3>
+        <p>Open usevia.app in Chrome or Chromium and authorize the Q60. Layers: 0 Mac, 1 Windows, 2 Fn, 3 Fn + Right Shift, 4 and 5 free.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer><span>Q60 HHKB Keymap</span><a href="https://github.com/shrac1234/Q60_HHKB">github.com/shrac1234/Q60_HHKB</a></footer>
+</div>
+
+</body>
+</html>

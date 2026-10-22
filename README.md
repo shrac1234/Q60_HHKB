@@ -19,11 +19,12 @@ Python 3 on Linux. No extra packages.
 
 ## What changes
 
-The Q60 is already physically an HHKB layout. The script changes three things:
+The Q60 is already physically an HHKB layout. The script changes four things:
 
 1. **Backspace.** The key above Enter types **Backspace**. Keychron ships it as Delete. **Fn + that key** types **Delete**.
 2. **Fn layer.** Fn now works like an HHKB Pro 2: arrows, Home/End, PgUp/PgDn, volume, PrtSc and numpad keys.
 3. **Lighting.** Keychron's RGB lighting and NKRO controls move to **Fn + Right Shift**. A real HHKB has no backlight, so this pair is otherwise unused.
+4. **Windows bottom row.** Keychron ships `Win Alt Space Alt Win`. The script swaps it to HHKB order, `Alt Win Space Win Alt`. The Mac position already matches HHKB.
 
 ### Hold Fn
 
@@ -54,28 +55,24 @@ The Q60 is already physically an HHKB layout. The script changes three things:
 
 ### Mac / Windows switch
 
-The slide switch on the side picks the base layer. Only the bottom row differs.
+The slide switch on the side picks the base layer. Both positions use the HHKB bottom row, `Alt ◇ Space ◇ Alt`. Only what ◇ and Alt send differs.
 
 | Position | Bottom row |
 |---|---|
 | Mac (layer 0) | <kbd>Option</kbd> <kbd>Cmd</kbd> <kbd>Space</kbd> <kbd>Cmd</kbd> <kbd>Option</kbd> |
-| Windows (layer 1) | <kbd>Win</kbd> <kbd>Alt</kbd> <kbd>Space</kbd> <kbd>Alt</kbd> <kbd>Win</kbd> |
+| Windows (layer 1) | <kbd>Alt</kbd> <kbd>Win</kbd> <kbd>Space</kbd> <kbd>Win</kbd> <kbd>Alt</kbd> |
 
 ## Usage
 
-**1. Allow access to the keyboard.** On Linux, only root can write to the keyboard's VIA interface by default. To allow it until you unplug the keyboard (the hidraw number can vary; the script prints the right one if access fails):
-
-```sh
-sudo chmod a+rw /dev/hidraw9
-```
-
-To allow it permanently, which also lets usevia.app connect in Chrome:
+**1. Install the udev rule (do this first).** On Linux, only root can write to the keyboard's VIA interface by default. This rule gives your user access every time the Q60 is plugged in, and also lets usevia.app connect in Chrome:
 
 ```sh
 echo 'KERNEL=="hidraw*", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="01c0", MODE="0660", TAG+="uaccess"' \
   | sudo tee /etc/udev/rules.d/99-keychron-q60.rules
 sudo udevadm control --reload && sudo udevadm trigger
 ```
+
+Quick one-off alternative: `sudo chmod a+rw /dev/hidraw9`. It's lost on every replug or reboot, because the device node is recreated with root-only permissions. The hidraw number can also vary; if access fails, the script prints the right one.
 
 **2. Run the script.**
 
@@ -85,7 +82,7 @@ python3 hhkb_q60.py apply              # back up, write the HHKB layout, read it
 python3 hhkb_q60.py restore FILE.json  # write a backup back to the keyboard
 ```
 
-`apply` always saves a backup first. To undo the change, restore the backup it made.
+`apply` always saves a backup of the current keymap before writing anything. To undo the change, restore the backup it made. Backups are never overwritten: two made in the same second get a `_2` suffix. `apply` is safe to run again; if the Fn layer is already HHKB, it keeps your existing lighting layer.
 
 **3. Fine-tune in VIA (optional).** Open usevia.app in Chrome or Chromium and authorize the Q60. VIA's layers line up with this layout:
 
@@ -103,4 +100,6 @@ python3 hhkb_q60.py restore FILE.json  # write a backup back to the keyboard
 |---|---|
 | `hhkb_q60.py` | The remapping script |
 | `q60-hhkb-guide.html` | Interactive version of this guide, also served on GitHub Pages |
+| `q60-hhkb-guide.pdf` | Printable two-page A4 version |
+| `print/` | Builds the PDF: `python3 print/build_print.py && python3 print/firefox_pdf.py print/q60-hhkb-print.html q60-hhkb-guide.pdf` (needs Firefox) |
 | `assets/` | Images used in this README |

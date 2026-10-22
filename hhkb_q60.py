@@ -22,6 +22,7 @@ RGHT, LEFT, DOWN, UP = 0x4F, 0x50, 0x51, 0x52
 PSLS, PAST, PMNS, PPLS, PENT = 0x54, 0x55, 0x56, 0x57, 0x58
 PWR = 0x66
 MUTE, VOLU, VOLD, EJCT = 0xA8, 0xA9, 0xAA, 0xB0
+LALT, LGUI, RALT, RGUI = 0xE2, 0xE3, 0xE6, 0xE7
 
 # Matrix positions (row, col) on the Q60
 POS = {
@@ -34,7 +35,12 @@ POS = {
     "'": (2, 11), "enter": (2, 13),
     "lshift": (3, 0), "n": (3, 7), "m": (3, 8), ",": (3, 9), ".": (3, 10),
     "/": (3, 11), "rshift": (3, 12), "fn": (3, 13),
+    "bottom1": (4, 0), "bottom2": (4, 1), "bottom4": (4, 10), "bottom5": (4, 11),
 }
+
+# HHKB bottom row on the Windows layer: Alt ◇ Space ◇ Alt (◇ = Win).
+# Keychron ships Win Alt Space Alt Win; the Mac layer already matches HHKB.
+HHKB_WIN_BOTTOM = {"bottom1": LALT, "bottom2": LGUI, "bottom4": RGUI, "bottom5": RALT}
 
 # HHKB Professional 2 / Hybrid Fn layer
 HHKB_FN = {
@@ -100,8 +106,12 @@ class Via:
 
 def backup(via):
     km = via.dump()
-    path = f"q60_backup_{time.strftime('%Y%m%d_%H%M%S')}.json"
-    with open(path, "w") as f:
+    stem = f"q60_backup_{time.strftime('%Y%m%d_%H%M%S')}"
+    path, n = f"{stem}.json", 1
+    while os.path.exists(path):  # never overwrite an earlier backup
+        n += 1
+        path = f"{stem}_{n}.json"
+    with open(path, "x") as f:
         json.dump({"protocol": via.protocol(), "keymap": km}, f)
     print(f"Backup saved: {path}")
     return km
@@ -127,11 +137,19 @@ def apply(via):
     for base in (MAC_BASE, WIN_BASE):
         r, c = POS["bs"]
         new[base][r][c] = BSPC
+    for key, kc in HHKB_WIN_BOTTOM.items():
+        r, c = POS[key]
+        new[WIN_BASE][r][c] = kc
 
-    # Move Keychron's original Fn layer (RGB controls, NKRO toggle) to layer 3
-    new[EXTRA_LAYER] = [row[:] for row in km[FN_LAYER]]
-    r, c = POS["fn"]
-    new[EXTRA_LAYER][r][c] = TRNS
+    # Move Keychron's original Fn layer (RGB controls, NKRO toggle) to layer 3.
+    # Skip if a previous apply already did, or the RGB layer would be lost.
+    r, c = POS["rshift"]
+    if km[FN_LAYER][r][c] == mo_extra:
+        print("Fn layer is already HHKB; keeping the existing layer 3.")
+    else:
+        new[EXTRA_LAYER] = [row[:] for row in km[FN_LAYER]]
+        r, c = POS["fn"]
+        new[EXTRA_LAYER][r][c] = TRNS
 
     # Layer 2 = pure HHKB Fn layer; Fn+RShift (unused on HHKB) opens layer 3
     fn = [[TRNS] * COLS for _ in range(ROWS)]

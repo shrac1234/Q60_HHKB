@@ -293,7 +293,7 @@ footer { font-size: 0.88rem; color: var(--muted); border-top: 1px solid var(--li
 
   <section>
     <h2>Mac / Windows switch</h2>
-    <p class="prose">The slide switch on the side of the board picks which base layer is active. Both have the same letters, Backspace and Fn; only the bottom row changes.</p>
+    <p class="prose">The slide switch on the side of the board picks which base layer is active. Both use the HHKB bottom row, Alt ◇ Space ◇ Alt; only what ◇ and Alt send changes.</p>
     <div class="groups">
       <div class="group">
         <h3>Mac position (layer 0)</h3>
@@ -301,7 +301,7 @@ footer { font-size: 0.88rem; color: var(--muted); border-top: 1px solid var(--li
       </div>
       <div class="group">
         <h3>Windows position (layer 1)</h3>
-        <p><kbd>Win</kbd> <kbd>Alt</kbd> <kbd>Space</kbd> <kbd>Alt</kbd> <kbd>Win</kbd></p>
+        <p><kbd>Alt</kbd> <kbd>Win</kbd> <kbd>Space</kbd> <kbd>Win</kbd> <kbd>Alt</kbd></p>
       </div>
     </div>
   </section>
@@ -311,13 +311,12 @@ footer { font-size: 0.88rem; color: var(--muted); border-top: 1px solid var(--li
     <p class="prose">The layout lives in the keyboard's memory, so it works on any computer without software. To change it, use <code>hhkb_q60.py</code> from the Q60_HHKB repo, or VIA. Either one first needs permission to talk to the keyboard.</p>
     <div class="steps">
       <div class="step">
-        <h3>Allow access (once per plug-in)</h3>
-        <p>Linux only lets root write to the keyboard's settings interface. This grant lasts until you unplug the board.</p>
-        <pre>sudo chmod a+rw /dev/hidraw9</pre>
-        <p>The number can change after replugging. To make access permanent and let VIA in Chrome connect too, add a udev rule instead:</p>
+        <h3>Allow access (do this first)</h3>
+        <p>Linux only lets root write to the keyboard's settings interface. This udev rule gives your user access every time the board is plugged in, and lets VIA in Chrome connect too:</p>
         <pre>echo 'KERNEL=="hidraw*", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="01c0", MODE="0660", TAG+="uaccess"' \
   | sudo tee /etc/udev/rules.d/99-keychron-q60.rules
 sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</pre>
+        <p>Quick one-off alternative, lost on every replug or reboot: <code>sudo chmod a+rw /dev/hidraw9</code> (the number can vary).</p>
       </div>
       <div class="step">
         <h3>Save a backup</h3>
@@ -327,7 +326,7 @@ python3 hhkb_q60.py backup</pre>
       </div>
       <div class="step">
         <h3>Restore a backup</h3>
-        <p>Every <code>apply</code> saves a backup first, so to undo it, restore the backup that run made.</p>
+        <p>Every <code>apply</code> saves a backup first, so to undo it, restore the backup that run made. Backups are never overwritten.</p>
         <pre>python3 hhkb_q60.py restore q60_backup_&lt;timestamp&gt;.json</pre>
       </div>
       <div class="step">
