@@ -1,5 +1,6 @@
 /* Copyright 2022 @ Keychron (https://www.keychron.com)
  * HHKB Professional layout: Shreevathsa Acharya
+ * Updated keymap: https://github.com/shrac1234/Q60_HHKB/blob/main/qmk/keymaps/hhkb/keymap.c
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
