@@ -1,0 +1,468 @@
+<title>Q60 HHKB Keymap</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;700&display=swap">
+<style>
+/* Layout: flat grey ground, square white panels, one mono face; pixel scatter only in the header band. */
+:root {
+  --ground: #dedede;
+  --paper: #ffffff;
+  --ink: #010414;
+  --muted: #4a4f63;
+  --line: #a3b7ed;
+  --blue-900: #1c3781;
+  --blue-700: #274eb7;
+  --blue-500: #3264eb;
+  --blue-300: #7392e6;
+  --blue-100: #aab9e2;
+  --accent: var(--blue-500);
+  --on-accent: #ffffff;
+  --cap: #ffffff;
+  --cap-mod: #aab9e2;
+  --board: #1c3781;
+  --legend-fn: #2350d8;
+  --legend-fn-mod: #1c3781;
+
+  --mono: "Source Code Pro", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground: #0d1226;
+    --paper: #151c38;
+    --ink: #e8ecf8;
+    --muted: #a3aeca;
+    --line: #2c3d78;
+    --blue-900: #aab9e2;
+    --blue-700: #7392e6;
+    --blue-500: #5b80f0;
+    --blue-300: #274eb7;
+    --blue-100: #1c3781;
+    --accent: #7392e6;
+    --on-accent: #0d1226;
+    --cap: #2a3460;
+    --cap-mod: #3d4f94;
+    --board: #070a17;
+    --legend-fn: #a9c0ff;
+    --legend-fn-mod: #e2e8ff;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground: #0d1226;
+  --paper: #151c38;
+  --ink: #e8ecf8;
+  --muted: #a3aeca;
+  --line: #2c3d78;
+  --blue-900: #aab9e2;
+  --blue-700: #7392e6;
+  --blue-500: #5b80f0;
+  --blue-300: #274eb7;
+  --blue-100: #1c3781;
+  --accent: #7392e6;
+  --on-accent: #0d1226;
+  --cap: #2a3460;
+  --cap-mod: #3d4f94;
+  --board: #070a17;
+  --legend-fn: #a9c0ff;
+  --legend-fn-mod: #e2e8ff;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font: 400 15px/1.7 var(--mono);
+}
+.band, main {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+main { padding-block: 8px 72px; }
+.wrap { max-width: 940px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
+.prose { max-width: 66ch; }
+
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+h2 { font: 700 1.25rem/1.3 var(--mono); }
+h2::before { content: ""; display: inline-block; width: 0.6em; height: 0.6em; background: var(--blue-500); margin-right: 0.55em; vertical-align: 0.05em; }
+h3 { font: 700 0.74rem/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+p { margin: 0; }
+section { display: flex; flex-direction: column; gap: 18px; }
+
+/* header band with pixel scatter */
+.band { position: relative; overflow: hidden; padding-block: 72px 64px; }
+.band canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+.band .wrap { position: relative; gap: 18px; align-items: center; text-align: center; }
+.tag {
+  font-size: 0.8rem;
+  color: var(--blue-500);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 4px 12px;
+}
+h1 { margin: 0; width: min(100%, 640px); padding-block: 6px; }
+h1 svg { display: block; width: 100%; height: auto; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* 12 dot rows banded into the blue ramp, top to bottom */
+.r0, .r1 { fill: var(--blue-900); }
+.r2, .r3, .r4 { fill: var(--blue-700); }
+.r5, .r6, .r7 { fill: var(--blue-500); }
+.r8, .r9 { fill: var(--blue-300); }
+.r10, .r11 { fill: var(--blue-100); }
+.lede { font-size: 1.05rem; max-width: 56ch; }
+.lede strong { font-weight: 500; font-size: 1.25rem; display: block; margin-bottom: 6px; }
+
+kbd {
+  font: 500 0.82em/1 var(--mono);
+  background: var(--cap);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-bottom-width: 3px;
+  padding: 0.2em 0.45em;
+  white-space: nowrap;
+}
+code { font-family: var(--mono); font-size: 0.92em; background: var(--paper); padding: 0.1em 0.35em; }
+
+/* keyboard diagram */
+.board-scroll { overflow-x: auto; }
+.board {
+  min-width: 700px;
+  background: var(--board);
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(60, 1fr);
+  gap: 5px;
+}
+.key {
+  grid-column: span var(--w, 4);
+  height: 62px;
+  background: var(--cap);
+  box-shadow: inset 0 -4px 0 rgba(0,0,0,0.14);
+  padding: 5px 6px 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+.key.mod { background: var(--cap-mod); }
+.key.gap { background: transparent; box-shadow: none; }
+.key .base { font-size: 0.86rem; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.key .layer { font-size: 0.76rem; font-weight: 700; color: var(--legend-fn); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.key.mod .layer { color: var(--legend-fn-mod); }
+.key.held { background: var(--accent); }
+.key.held .base { color: var(--on-accent); }
+
+.toggle { display: flex; flex-wrap: wrap; gap: 10px; }
+.toggle button {
+  font: 500 0.88rem/1 var(--mono);
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+.toggle button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.toggle button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.caption { font-size: 0.85rem; color: var(--muted); max-width: 72ch; }
+
+/* function groups */
+.groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; }
+.group { display: flex; flex-direction: column; gap: 12px; background: var(--paper); padding: 18px 20px; }
+.group dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 8px 16px; align-items: baseline; }
+.group dt { font-size: 0.92rem; }
+.group dd { margin: 0; }
+
+pre {
+  margin: 0;
+  background: var(--paper);
+  border-left: 4px solid var(--blue-500);
+  padding: 14px 16px;
+  overflow-x: auto;
+  font: 400 0.84rem/1.6 var(--mono);
+}
+.steps { display: flex; flex-direction: column; gap: 26px; }
+.step { display: flex; flex-direction: column; gap: 8px; }
+.step p { max-width: 66ch; }
+
+footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; }
+</style>
+
+<header class="band">
+  <canvas id="pixels" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <span class="tag">Keychron Q60 · 3434:01C0 · QMK / VIA</span>
+    <h1><span class="sr">Q60 HHKB</span><svg id="wordmark" aria-hidden="true"></svg></h1>
+    <p class="lede"><strong>Happy Hacking layout on a Keychron Q60</strong>What Fn does, the extra lighting layer, and how to back up or change the layout.</p>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <section>
+    <h2>The board at a glance</h2>
+    <div class="toggle" role="group" aria-label="Layer shown on the keycaps">
+      <button type="button" id="show-fn" aria-pressed="true">Hold Fn</button>
+      <button type="button" id="show-light" aria-pressed="false">Hold Fn + Right Shift</button>
+    </div>
+    <div class="board-scroll">
+      <div class="board" id="board" aria-label="Q60 keyboard diagram"></div>
+    </div>
+    <p class="caption">Top legend: what the key types normally. Blue legend: what it types while you hold the filled keys. A key with no blue legend types as normal.</p>
+  </section>
+
+  <section>
+    <h2>Fn functions</h2>
+    <div class="groups">
+      <div class="group">
+        <h3>Arrows and paging</h3>
+        <dl>
+          <dt><kbd>Fn</kbd> <kbd>[</kbd></dt><dd>Up</dd>
+          <dt><kbd>Fn</kbd> <kbd>/</kbd></dt><dd>Down</dd>
+          <dt><kbd>Fn</kbd> <kbd>;</kbd></dt><dd>Left</dd>
+          <dt><kbd>Fn</kbd> <kbd>'</kbd></dt><dd>Right</dd>
+          <dt><kbd>Fn</kbd> <kbd>K</kbd></dt><dd>Home</dd>
+          <dt><kbd>Fn</kbd> <kbd>,</kbd></dt><dd>End</dd>
+          <dt><kbd>Fn</kbd> <kbd>L</kbd></dt><dd>Page Up</dd>
+          <dt><kbd>Fn</kbd> <kbd>.</kbd></dt><dd>Page Down</dd>
+        </dl>
+      </div>
+      <div class="group">
+        <h3>Editing</h3>
+        <dl>
+          <dt><kbd>BS</kbd></dt><dd>Backspace</dd>
+          <dt><kbd>Fn</kbd> <kbd>BS</kbd></dt><dd>Delete (forward)</dd>
+          <dt><kbd>Fn</kbd> <kbd>`</kbd></dt><dd>Delete (forward)</dd>
+          <dt><kbd>Fn</kbd> <kbd>\</kbd></dt><dd>Insert</dd>
+          <dt><kbd>Fn</kbd> <kbd>Tab</kbd></dt><dd>Caps Lock</dd>
+        </dl>
+      </div>
+      <div class="group">
+        <h3>Function row</h3>
+        <dl>
+          <dt><kbd>Fn</kbd> <kbd>1</kbd>…<kbd>0</kbd></dt><dd>F1 to F10</dd>
+          <dt><kbd>Fn</kbd> <kbd>-</kbd></dt><dd>F11</dd>
+          <dt><kbd>Fn</kbd> <kbd>=</kbd></dt><dd>F12</dd>
+        </dl>
+      </div>
+      <div class="group">
+        <h3>Media</h3>
+        <dl>
+          <dt><kbd>Fn</kbd> <kbd>A</kbd></dt><dd>Volume down</dd>
+          <dt><kbd>Fn</kbd> <kbd>S</kbd></dt><dd>Volume up</dd>
+          <dt><kbd>Fn</kbd> <kbd>D</kbd></dt><dd>Mute</dd>
+          <dt><kbd>Fn</kbd> <kbd>F</kbd></dt><dd>Eject (macOS)</dd>
+        </dl>
+      </div>
+      <div class="group">
+        <h3>Numpad</h3>
+        <dl>
+          <dt><kbd>Fn</kbd> <kbd>H</kbd></dt><dd>Numpad *</dd>
+          <dt><kbd>Fn</kbd> <kbd>J</kbd></dt><dd>Numpad /</dd>
+          <dt><kbd>Fn</kbd> <kbd>N</kbd></dt><dd>Numpad +</dd>
+          <dt><kbd>Fn</kbd> <kbd>M</kbd></dt><dd>Numpad −</dd>
+          <dt><kbd>Fn</kbd> <kbd>Enter</kbd></dt><dd>Numpad Enter</dd>
+        </dl>
+      </div>
+      <div class="group">
+        <h3>System</h3>
+        <dl>
+          <dt><kbd>Fn</kbd> <kbd>I</kbd></dt><dd>Print Screen</dd>
+          <dt><kbd>Fn</kbd> <kbd>O</kbd></dt><dd>Scroll Lock</dd>
+          <dt><kbd>Fn</kbd> <kbd>P</kbd></dt><dd>Pause</dd>
+          <dt><kbd>Fn</kbd> <kbd>Esc</kbd></dt><dd>Power (your OS may show a shutdown prompt)</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Lighting and NKRO</h2>
+    <p class="prose">A real HHKB has no backlight, so Keychron's lighting controls live on a layer of their own. Hold <kbd>Fn</kbd>, then also hold <kbd>Right Shift</kbd>, then tap the key.</p>
+    <div class="groups">
+      <div class="group">
+        <h3>Turn up</h3>
+        <dl>
+          <dt><kbd>Tab</kbd></dt><dd>Backlight on / off</dd>
+          <dt><kbd>Q</kbd></dt><dd>Next effect</dd>
+          <dt><kbd>W</kbd></dt><dd>Brighter</dd>
+          <dt><kbd>E</kbd></dt><dd>Hue forward</dd>
+          <dt><kbd>R</kbd></dt><dd>More saturation</dd>
+          <dt><kbd>T</kbd></dt><dd>Faster effect</dd>
+        </dl>
+      </div>
+      <div class="group">
+        <h3>Turn down</h3>
+        <dl>
+          <dt><kbd>A</kbd></dt><dd>Previous effect</dd>
+          <dt><kbd>S</kbd></dt><dd>Dimmer</dd>
+          <dt><kbd>D</kbd></dt><dd>Hue back</dd>
+          <dt><kbd>F</kbd></dt><dd>Less saturation</dd>
+          <dt><kbd>G</kbd></dt><dd>Slower effect</dd>
+        </dl>
+      </div>
+      <div class="group">
+        <h3>Other</h3>
+        <dl>
+          <dt><kbd>N</kbd></dt><dd>NKRO on / off (lets every key register at once)</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Mac / Windows switch</h2>
+    <p class="prose">The slide switch on the side of the board picks which base layer is active. Both have the same letters, Backspace and Fn; only the bottom row changes.</p>
+    <div class="groups">
+      <div class="group">
+        <h3>Mac position (layer 0)</h3>
+        <p><kbd>Option</kbd> <kbd>Cmd</kbd> <kbd>Space</kbd> <kbd>Cmd</kbd> <kbd>Option</kbd></p>
+      </div>
+      <div class="group">
+        <h3>Windows position (layer 1)</h3>
+        <p><kbd>Win</kbd> <kbd>Alt</kbd> <kbd>Space</kbd> <kbd>Alt</kbd> <kbd>Win</kbd></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Backing up and changing the layout</h2>
+    <p class="prose">The layout lives in the keyboard's memory, so it works on any computer without software. To change it, use <code>hhkb_q60.py</code> from the Q60_HHKB repo, or VIA. Either one first needs permission to talk to the keyboard.</p>
+    <div class="steps">
+      <div class="step">
+        <h3>Allow access (once per plug-in)</h3>
+        <p>Linux only lets root write to the keyboard's settings interface. This grant lasts until you unplug the board.</p>
+        <pre>sudo chmod a+rw /dev/hidraw9</pre>
+        <p>The number can change after replugging. To make access permanent and let VIA in Chrome connect too, add a udev rule instead:</p>
+        <pre>echo 'KERNEL=="hidraw*", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="01c0", MODE="0660", TAG+="uaccess"' \
+  | sudo tee /etc/udev/rules.d/99-keychron-q60.rules
+sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</pre>
+      </div>
+      <div class="step">
+        <h3>Save a backup</h3>
+        <p>Writes every layer to a timestamped JSON file in the current folder.</p>
+        <pre>cd Q60_HHKB
+python3 hhkb_q60.py backup</pre>
+      </div>
+      <div class="step">
+        <h3>Restore a backup</h3>
+        <p>Every <code>apply</code> saves a backup first, so to undo it, restore the backup that run made.</p>
+        <pre>python3 hhkb_q60.py restore q60_backup_&lt;timestamp&gt;.json</pre>
+      </div>
+      <div class="step">
+        <h3>Apply the HHKB layout again</h3>
+        <p>Saves a backup first, then writes the layout and reads it back to confirm.</p>
+        <pre>python3 hhkb_q60.py apply</pre>
+      </div>
+      <div class="step">
+        <h3>Edit single keys in VIA</h3>
+        <p>Open usevia.app in Chrome or Chromium, click Authorize device and pick the Q60. Layers 0 to 3 in VIA match this page: 0 Mac, 1 Windows, 2 Fn, 3 Fn + Right Shift. Changes save to the board as soon as you make them.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>Layout written over VIA protocol 0x000B. Layers 4 and 5 are empty and free for your own use.</footer>
+</div>
+</main>
+
+<script>
+// [base legend, Fn legend, Fn+RShift legend, width in units, modifier?]
+const rows = [
+  [["Esc","Power"],["1","F1","F1"],["2","F2","F2"],["3","F3","F3"],["4","F4","F4"],["5","F5","F5"],["6","F6","F6"],["7","F7","F7"],["8","F8","F8"],["9","F9","F9"],["0","F10","F10"],["-","F11","F11"],["=","F12","F12"],["\\","Ins"],["`","Del"]],
+  [["Tab","Caps","RGB on/off",1.5,1],["Q","","Effect +"],["W","","Bright +"],["E","","Hue +"],["R","","Sat +"],["T","","Speed +"],["Y"],["U"],["I","PrtSc"],["O","ScrLk"],["P","Pause"],["[","↑"],["]"],["BS","Del","",1.5,1]],
+  [["Ctrl","","",1.75,1],["A","Vol −","Effect −"],["S","Vol +","Dim"],["D","Mute","Hue −"],["F","Eject","Sat −"],["G","","Speed −"],["H","*"],["J","/"],["K","Home"],["L","PgUp"],[";","←"],["'","→"],["Enter","Enter","",2.25,1]],
+  [["Shift","","",2.25,1],["Z"],["X"],["C"],["V"],["B"],["N","+","NKRO"],["M","−"],[",","End"],[".","PgDn"],["/","↓"],["Shift","Layer 3","",1.75,1],["Fn","","",1,1]],
+  [[null,"","",1.5],["Alt","","",1,1],["◇","","",1.5,1],["","","",7],["◇","","",1.5,1],["Alt","","",1,1],[null,"","",1.5]]
+];
+const board = document.getElementById("board");
+const btnFn = document.getElementById("show-fn");
+const btnLight = document.getElementById("show-light");
+
+function render(layer) {
+  board.textContent = "";
+  rows.forEach((row, r) => row.forEach(([base, fn = "", light = "", w = 1, mod = 0]) => {
+    const k = document.createElement("div");
+    k.className = "key" + (base === null ? " gap" : "") + (mod ? " mod" : "");
+    k.style.setProperty("--w", Math.round(w * 4));
+    if (base !== null) {
+      const rshift = base === "Shift" && r === 3 && w === 1.75;
+      // On layer 3, unset keys fall through to the Fn layer
+      const legend = layer === 3 ? (rshift ? "" : light || fn) : fn;
+      const b = document.createElement("span"); b.className = "base"; b.textContent = base;
+      const l = document.createElement("span"); l.className = "layer"; l.textContent = legend;
+      k.append(b, l);
+      if (base === "Fn" || (layer === 3 && rshift)) k.classList.add("held");
+    }
+    board.append(k);
+  }));
+  btnFn.setAttribute("aria-pressed", layer === 2);
+  btnLight.setAttribute("aria-pressed", layer === 3);
+}
+btnFn.addEventListener("click", () => render(2));
+btnLight.addEventListener("click", () => render(3));
+render(2);
+
+// Wordmark on a 7x12 dot grid per glyph
+const glyphs = {
+  Q: [".#####.","##...##","##...##","##...##","##...##","##...##","##...##","##...##","##...##","##.####",".#####.","....###"],
+  6: [".#####.","##...##","##.....","##.....","##.....","######.","##...##","##...##","##...##","##...##","##...##",".#####."],
+  0: [".#####.","##...##","##...##","##..###","##..###","##.#.##","##.#.##","###..##","###..##","##...##","##...##",".#####."],
+  H: ["##...##","##...##","##...##","##...##","##...##","#######","#######","##...##","##...##","##...##","##...##","##...##"],
+  K: ["##...##","##..##.","##..##.","##.##..","##.##..","####...","####...","##.##..","##.##..","##..##.","##..##.","##...##"],
+  B: ["######.","##...##","##...##","##...##","##..##.","######.","##...##","##...##","##...##","##...##","##...##","######."],
+};
+(function drawWordmark(text) {
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.getElementById("wordmark");
+  const dot = 0.84; // square dot inside each grid cell
+  let x = 0;
+  for (const ch of text) {
+    if (ch === " ") { x += 4; continue; }
+    glyphs[ch].forEach((row, r) => [...row].forEach((c, col) => {
+      if (c !== "#") return;
+      const rect = document.createElementNS(NS, "rect");
+      rect.setAttribute("x", x + col);
+      rect.setAttribute("y", r);
+      rect.setAttribute("width", dot);
+      rect.setAttribute("height", dot);
+      rect.setAttribute("class", "r" + r);
+      svg.append(rect);
+    }));
+    x += 8;
+  }
+  svg.setAttribute("viewBox", `0 0 ${x - 1 + dot - 1} 12`);
+})("Q60 HHKB");
+
+// Pixel scatter: denser toward the band's edges, fixed seed so it never jumps
+const canvas = document.getElementById("pixels");
+function drawPixels() {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  const ctx = canvas.getContext("2d");
+  ctx.scale(dpr, dpr);
+  const css = getComputedStyle(document.documentElement);
+  const tones = ["--blue-100", "--blue-100", "--blue-300", "--blue-500"].map(t => css.getPropertyValue(t).trim());
+  let seed = 7;
+  const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const size = 12, step = 18;
+  const cx = rect.width / 2, cy = rect.height * 0.45;
+  for (let y = 0; y < rect.height; y += step) {
+    for (let x = 0; x < rect.width; x += step) {
+      const dx = Math.abs(x - cx) / (rect.width / 2);
+      const bottom = y / rect.height;
+      const edge = Math.max(dx * 0.9, Math.pow(bottom, 3));
+      const clear = Math.abs(x - cx) < 360 && Math.abs(y - cy) < 120;
+      if (clear || rand() > edge * 0.5) continue;
+      ctx.fillStyle = tones[Math.floor(rand() * tones.length)];
+      ctx.fillRect(x, y, size, size);
+    }
+  }
+}
+drawPixels();
+addEventListener("resize", drawPixels);
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawPixels);
+new MutationObserver(drawPixels).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+</script>

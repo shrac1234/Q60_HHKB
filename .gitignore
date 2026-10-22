@@ -1,0 +1,4 @@
+# personal keymap backups and screenshots
+q60_backup_*.json
+*.png
+__pycache__/
