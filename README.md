@@ -103,3 +103,7 @@ python3 hhkb_q60.py restore FILE.json  # write a backup back to the keyboard
 | `q60-hhkb-guide.pdf` | Printable two-page A4 version |
 | `print/Q60_HHKB_kle_thinkpad.json` | Keycap layout in ThinkPad colours for [keyboard-layout-editor.com](http://www.keyboard-layout-editor.com) (Upload JSON) |
 | `assets/` | Images used in this README |
+
+---
+
+<sub>HHKB and Happy Hacking Keyboard are trademarks of PFU Limited. This project is not affiliated with or endorsed by PFU.</sub>
