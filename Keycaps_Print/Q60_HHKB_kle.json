@@ -1,14 +1,13 @@
 [
  {
-  "name": "Keychron Q60 HHKB – ThinkPad",
+  "name": "Keychron Q60 HHKB",
   "author": "Shreevathsa",
   "notes": "https://github.com/shrac1234/Q60_HHKB",
-  "css": "@import url(https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible:400,700);\n.keylabel { font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Arial, sans-serif; font-style: normal; }\n.tiny { font-size: 6px; }",
-  "backcolor": "#d8cdb6"
+  "css": "@import url(https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible:400,700);\n.keylabel { font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Arial, sans-serif; font-style: normal; }\n.tiny { font-size: 6px; }"
  },
  [
   {
-   "c": "#333335",
+   "c": "#a9bccf",
    "f": 3,
    "fa": [
     3,
@@ -20,12 +19,12 @@
     3,
     3
    ],
-   "t": "#f2f2f2\n#6fa3e8\n#f2f2f2\n#f2f2f2\n#e0473c\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2",
+   "t": "#2b2b2b\n#1d4f80\n#2b2b2b\n#2b2b2b\n#c0602a\n#2b2b2b\n#2b2b2b\n#2b2b2b\n#2b2b2b\n#2b2b2b\n#2b2b2b\n#2b2b2b",
    "a": 0
   },
   "\nPower\nEsc",
   {
-   "c": "#333335"
+   "c": "#ebe6da"
   },
   "\nF1\n!\n\n\n\n\n1",
   "\nF2\n@\n\n\n\n\n2",
@@ -44,12 +43,12 @@
  ],
  [
   {
-   "c": "#333335",
+   "c": "#a9bccf",
    "w": 1.5
   },
   "\nCaps\nTab\n\n<span class='tiny'>RGB</span>",
   {
-   "c": "#333335"
+   "c": "#ebe6da"
   },
   "\n\nQ\n\n<span class='tiny'>Mode+</span>",
   "\n\nW\n\n<span class='tiny'>Bri+</span>",
@@ -64,19 +63,19 @@
   "\n↑\n{\n\n\n\n\n[",
   "\n\n}\n\n\n\n\n]",
   {
-   "c": "#333335",
+   "c": "#a9bccf",
    "w": 1.5
   },
   "\nDel\nBS"
  ],
  [
   {
-   "c": "#333335",
+   "c": "#a9bccf",
    "w": 1.75
   },
   "\n\nControl",
   {
-   "c": "#333335"
+   "c": "#ebe6da"
   },
   "\nVol−\nA\n\n<span class='tiny'>Mode−</span>",
   "\nVol+\nS\n\n<span class='tiny'>Bri−</span>",
@@ -90,21 +89,19 @@
   "\n←\n:\n\n\n\n\n;",
   "\n→\n\"\n\n\n\n\n'",
   {
-   "c": "#6c7fbf",
-   "w": 2.25,
-   "t": "#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2"
+   "c": "#a9bccf",
+   "w": 2.25
   },
   "\nEnter\nReturn"
  ],
  [
   {
-   "c": "#333335",
-   "w": 2.25,
-   "t": "#f2f2f2\n#6fa3e8\n#f2f2f2\n#f2f2f2\n#e0473c\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2\n#f2f2f2"
+   "c": "#a9bccf",
+   "w": 2.25
   },
   "\n\nShift",
   {
-   "c": "#333335"
+   "c": "#ebe6da"
   },
   "\n\nZ",
   "\n\nX",
@@ -117,7 +114,7 @@
   "\nPgDn\n>\n\n\n\n\n.",
   "\n↓\n?\n\n\n\n\n/",
   {
-   "c": "#333335",
+   "c": "#a9bccf",
    "w": 1.75
   },
   "\nLighting\nShift",
@@ -125,7 +122,7 @@
  ],
  [
   {
-   "c": "#333335",
+   "c": "#a9bccf",
    "x": 1.5,
    "fa": [
     2,
@@ -144,12 +141,12 @@
   },
   "\n\nWin\nCmd",
   {
-   "c": "#333335",
+   "c": "#ebe6da",
    "w": 7
   },
   "\n\nSpace",
   {
-   "c": "#333335",
+   "c": "#a9bccf",
    "w": 1.5
   },
   "\n\nWin\nCmd",

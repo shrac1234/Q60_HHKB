@@ -101,7 +101,8 @@ python3 hhkb_q60.py restore FILE.json  # write a backup back to the keyboard
 | `hhkb_q60.py` | The remapping script |
 | `q60-hhkb-guide.html` | Interactive version of this guide, also served on GitHub Pages |
 | `q60-hhkb-guide.pdf` | Printable two-page A4 version |
-| `print/Q60_HHKB_kle_thinkpad.json` | Keycap layout in ThinkPad colours for [keyboard-layout-editor.com](http://www.keyboard-layout-editor.com) (Upload JSON) |
+| `Keycaps_Print/Q60_HHKB_kle_thinkpad.json` | Keycap layout in ThinkPad colours for [keyboard-layout-editor.com](http://www.keyboard-layout-editor.com) (Upload JSON) |
+| `Keycaps_Print/Q60_HHKB_kle.json` | Keycap layout in off-white and light blue, like the stock Q60 |
 | `assets/` | Images used in this README |
 
 ---

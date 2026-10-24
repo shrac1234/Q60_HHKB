@@ -1,0 +1,233 @@
+[
+  {
+    "author": "Shreevathsa",
+    "backcolor": "#d8cdb6",
+    "name": "Keychron Q60 HHKB – ThinkPad",
+    "notes": "https://github.com/shrac1234/Q60_HHKB",
+    "css": "@import url(https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible:400,700);\n.keylabel { font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Arial, sans-serif; font-style: normal; }\n.tiny { font-size: 6px; }"
+  },
+  [
+    {
+      "c": "#2b2e30",
+      "t": "#f2f2f2",
+      "ta": "\n#6fa3e8",
+      "fa": [
+        0,
+        1
+      ]
+    },
+    "\nPower\nEsc",
+    "\nF1\n!\n\n\n\n\n1",
+    "\nF2\n@\n\n\n\n\n2",
+    "\nF3\n#\n\n\n\n\n3",
+    "\nF4\n$\n\n\n\n\n4",
+    "\nF5\n%\n\n\n\n\n5",
+    "\nF6\n^\n\n\n\n\n6",
+    "\nF7\n&\n\n\n\n\n7",
+    "\nF8\n*\n\n\n\n\n8",
+    "\nF9\n(\n\n\n\n\n9",
+    "\nF10\n)\n\n\n\n\n0",
+    "\nF11\n_\n\n\n\n\n-",
+    "\nF12\n+\n\n\n\n\n=",
+    "\nIns\n|\n\n\n\n\n\\",
+    "\nDel\n~\n\n\n\n\n`"
+  ],
+  [
+    {
+      "ta": "\n#6fa3e8\n\n\n#e0473c",
+      "a": 0,
+      "fa": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "w": 1.5
+    },
+    "\nCaps\nTab\n\n<span class='tiny'>RGB</span>",
+    {
+      "ta": "\n\n\n\n#e0473c",
+      "fa": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "\n\nQ\n\n<span class='tiny'>Mode+</span>",
+    "\n\nW\n\n<span class='tiny'>Bri+</span>",
+    "\n\nE\n\n<span class='tiny'>Hue+</span>",
+    "\n\nR\n\n<span class='tiny'>Sat+</span>",
+    "\n\nT\n\n<span class='tiny'>Spd+</span>",
+    {
+      "ta": "",
+      "a": 4,
+      "fa": []
+    },
+    "\n\nY",
+    "\n\nU",
+    {
+      "ta": "\n#6fa3e8",
+      "fa": [
+        0,
+        1
+      ]
+    },
+    "\nPSc\nI",
+    "\nScrLk\nO",
+    "\nPause\nP",
+    "\n↑\n{\n\n\n\n\n[",
+    {
+      "ta": "",
+      "fa": []
+    },
+    "\n\n}\n\n\n\n\n]",
+    {
+      "ta": "\n#6fa3e8",
+      "fa": [
+        0,
+        1
+      ],
+      "w": 1.5
+    },
+    "\nDel\nBS"
+  ],
+  [
+    {
+      "ta": "",
+      "fa": [],
+      "w": 1.75
+    },
+    "\n\nControl",
+    {
+      "ta": "\n#6fa3e8\n\n\n#e0473c",
+      "a": 0,
+      "fa": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    "\nVol−\nA\n\n<span class='tiny'>Mode−</span>",
+    "\nVol+\nS\n\n<span class='tiny'>Bri−</span>",
+    "\nMute\nD\n\n<span class='tiny'>Hue−</span>",
+    "\nEject\nF\n\n<span class='tiny'>Sat−</span>",
+    {
+      "ta": "\n\n\n\n#e0473c",
+      "fa": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "\n\nG\n\n<span class='tiny'>Spd−</span>",
+    {
+      "ta": "\n#6fa3e8",
+      "a": 4,
+      "fa": [
+        0,
+        1
+      ]
+    },
+    "\n*\nH",
+    "\n/\nJ",
+    "\nHome\nK",
+    "\nPgUp\nL",
+    "\n←\n:\n\n\n\n\n;",
+    "\n→\n\"\n\n\n\n\n'",
+    {
+      "c": "#35505e",
+      "ta": "",
+      "w": 2.25
+    },
+    "\nEnter\nReturn"
+  ],
+  [
+    {
+      "c": "#2b2e30",
+      "fa": [],
+      "w": 2.25
+    },
+    "\n\nShift",
+    "\n\nZ",
+    "\n\nX",
+    "\n\nC",
+    "\n\nV",
+    "\n\nB",
+    {
+      "ta": "\n#6fa3e8\n\n\n#e0473c",
+      "a": 0,
+      "fa": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    "\n+\nN\n\n<span class='tiny'>NKRO</span>",
+    {
+      "ta": "\n#6fa3e8",
+      "a": 4,
+      "fa": [
+        0,
+        1
+      ]
+    },
+    "\n−\nM",
+    "\nEnd\n<\n\n\n\n\n,",
+    "\nPgDn\n>\n\n\n\n\n.",
+    "\n↓\n?\n\n\n\n\n/",
+    {
+      "w": 1.75
+    },
+    "\nLighting\nShift",
+    {
+      "ta": "",
+      "fa": []
+    },
+    "\n\nFn"
+  ],
+  [
+    {
+      "x": 1.5,
+      "fa": [
+        0,
+        0,
+        2,
+        2
+      ]
+    },
+    "\n\nAlt\nOpt",
+    {
+      "w": 1.5
+    },
+    "\n\nWin\nCmd",
+    {
+      "fa": [
+        0,
+        0,
+        2
+      ],
+      "w": 7
+    },
+    "\n\nSpace",
+    {
+      "fa": [
+        0,
+        0,
+        2,
+        2
+      ],
+      "w": 1.5
+    },
+    "\n\nWin\nCmd",
+    "\n\nAlt\nOpt"
+  ]
+]
